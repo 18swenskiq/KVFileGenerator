@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using VMFParse;
 
 namespace FileGenerator
 {
@@ -12,7 +13,6 @@ namespace FileGenerator
 
             //Read Map Name from VMF
             ParseVMF(args[1]);
-            //ParseVMF(arr);
 
             //Read Terrorist KeyValue from VMF
 
