@@ -1,0 +1,46 @@
+﻿@PointClass iconsprite("tar/editor/tar_config.vmt") = s_teamselector : 
+	"Config of s_teamselector point entity"
+[
+
+	CTFaction(choices) : "Counter-Terrorist Faction" : 0 =
+	[
+		0: "FBI"
+		1: "GIGN"
+		2: "GSG-9"
+		3: "IDF"
+		4: "SAS"
+		5: "SEAL Team 6"
+		6: "SWAT"
+		7: "Anarchists"
+		8: "Balkans"
+		9: "Elite Crew"
+		10: "Phoenix Connexion"
+		11: "Pirates"
+		12: "Professionals"
+		13: "Separtists"
+		14: "Danger Zone"
+		15: "Heavy Phoenix"
+		16: "Zombie"
+	]
+
+	TFaction(choices) : "Terrorist Faction" : 0 =
+	[
+		0: "Anarchists"
+		1: "Balkans"
+		2: "Elite Crew"
+		3: "Phoenix Connexion"
+		4: "Pirates"
+		5: "Professionals"
+		6: "Separatists"
+		7: "FBI"
+		8: "GIGN"
+		9: "GSG-9"
+		10: "IDF"
+		11: "SAS"
+		12: "SEAL Team 6"
+		13: "SWAT"
+		14: "Danger Zone"
+		15: "Heavy Phoenix"
+		16: "Zombie"
+	]
+]

@@ -9,6 +9,25 @@ namespace FileGenerator
     {
         static void Main(string[] args)
         {
+
+            //Read Map Name from VMF
+
+            //Read Terrorist KeyValue from VMF
+            
+            //Read Counter-Terrorist KeyValue from VMF
+
+            //Create .kv file in /csgo/maps
+
+            //Test if arms is obsolete. If its not, then add arms to file (use different class if so I guess)
+
+            //Write map name to .kv file
+
+            //Write faction data (use different class?)
+
+            //Write "written by Squidski's kv file tool" or something like that
+
+            //Close Program
+
         }
     }
 }
