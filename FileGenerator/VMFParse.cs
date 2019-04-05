@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -14,15 +15,19 @@ namespace FileGenerator
 
         private static string GetCTNumber(string mapDirectory)
         {
-            var fileStream = new FileStream(@"c:\file.txt", FileMode.Open, FileAccess.Read);
-            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+            string[] parsedMap = File.ReadAllLines(mapDirectory);
+            foreach (string s in parsedMap)
             {
-                string line;
-                while ((line = streamReader.ReadLine()) != null)
+                if (s.Contains("CTFaction"))
                 {
-                    // process the line
+                    break;
+                }
+                else
+                {
+
                 }
             }
+
         }
 
     }
