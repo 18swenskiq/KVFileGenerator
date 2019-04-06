@@ -11,9 +11,10 @@ namespace FileGenerator
         {
 
             //Read Map Name from VMF
+            ParseVMF(args[1]);
 
             //Read Terrorist KeyValue from VMF
-            
+
             //Read Counter-Terrorist KeyValue from VMF
 
             //Create .kv file in /csgo/maps
@@ -28,6 +29,11 @@ namespace FileGenerator
 
             //Close Program
 
+        }
+
+         public static string ParseVMF(string mapDirectory)
+        {
+            VMFParse vmf = new VMFParse();
         }
     }
 }
