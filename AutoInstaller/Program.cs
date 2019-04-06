@@ -11,9 +11,14 @@ namespace AutoInstaller
     class Program
     {
         private static string CSGOPath = "NULL";
+        private static bool custompathfound = false;
 
         static void Main(string[] args)
         {
+            // Give credit of course :)
+            Console.WriteLine("KV Generator auto installer setup. KV Generator made by Squidski, Installer made by JamDoggie. Licensed MIT 2019. https://github.com/18swenskiq/KVFileGenerator/");
+            Console.WriteLine("Grabbing CSGO directory from registry...\n");
+
             // Get's the steam directory so we can work off of that
             RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\Valve\\Steam", false);
             string value = null;
@@ -23,10 +28,21 @@ namespace AutoInstaller
             {
                 value = (string)key.GetValue("SteamPath");
             }
+            else
+            {
+                string path = "";
+                if ((path = getUserDefinedPath()) == null)
+                {
+                    custompathfound = false;
+                }
+                else
+                {
+                    custompathfound = true;
+                    CSGOPath = path;
+                }
+            }
 
-            // Give credit of course :)
-            Console.WriteLine("KV Generator auto installer setup. KV Generator made by Squidski, Installer made by JamDoggie. Licensed MIT 2019. https://github.com/18swenskiq/KVFileGenerator/");
-            Console.WriteLine("Grabbing CSGO directory from registry...");
+            
 
             // If we could find the "SteamPath" value, continue
             if (value != null)
@@ -54,10 +70,24 @@ namespace AutoInstaller
                         }
                     }
                 }
+                if (CSGOPath == "NULL")
+                {
+                    string path = "";
+                    if ((path = getUserDefinedPath()) == null)
+                    {
+                        custompathfound = false;
+                    }
+                    else
+                    {
+                        custompathfound = true;
+                        CSGOPath = path;
+                    }
+                }
             }
 
+           
             // TODO: add else statement to cover a scenario where we couldn't find the directory, and ask the user to supply the directory instead.
-            if(CSGOPath != "NULL")
+            if (CSGOPath != "NULL")
             {
                 Console.WriteLine("CSGO directory found successfully \nInstalling files...");
 
@@ -159,7 +189,6 @@ namespace AutoInstaller
             int bufferSize = 1024 * 1024;
 
             using (FileStream fileStream = new FileStream(outputFilePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite))
-            //using (FileStream fs = File.Open(<file-path>, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 FileStream fs = new FileStream(inputFilePath, FileMode.Open, FileAccess.ReadWrite);
                 fileStream.SetLength(fs.Length);
@@ -172,5 +201,24 @@ namespace AutoInstaller
                 }
             }
         }
+
+        // This will ask the user for a path. It will then check if the path is valid.
+        public static string getUserDefinedPath()
+        {
+            Console.WriteLine("Counter-Strike Global Offensive not found. Please input your Counter-Strike Global Offensive path. It will look something like ''{SteamDirectory}\\steamapps\\common\\Counter Strike Global Offensive''. do NOT supply Counter-Strike Global Offensive\\csgo, only Counter-Strike Global Offensive.");
+            string input = Console.ReadLine();
+            if(!Directory.Exists(input))
+            {
+                input = null;
+            }
+            if(!Directory.Exists($"{input}\\bin") || !File.Exists($"{input}\\bin\\GameConfig.txt"))
+            {
+                Console.WriteLine("Custom path invalid! Installer exiting.");
+                custompathfound = false;
+                input = null;
+            }
+            return input;
+        }
+
     }
 }
