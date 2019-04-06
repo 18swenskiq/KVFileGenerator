@@ -71,6 +71,7 @@
     <Content Include="bin\Debug\AutoInstaller.pdb" />
     <Content Include="bin\Debug\Indieteur.SAMAPI.dll" />
     <Content Include="bin\Debug\Indieteur.VDFAPI.dll" />
+    <Content Include="bin\Debug\README_IMPORTANT.txt" />
     <Content Include="obj\Debug\AutoInstaller.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\AutoInstaller.exe" />
     <Content Include="obj\Debug\AutoInstaller.pdb" />
