@@ -46,7 +46,7 @@
     <Compile Include="VMFParse.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="KVFileGen.fgd" />
+    <None Include="kvfilegen.fgd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

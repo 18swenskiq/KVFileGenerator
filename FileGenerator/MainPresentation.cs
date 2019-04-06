@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using VMFParse;
 
 namespace FileGenerator
 {
@@ -34,7 +33,7 @@ namespace FileGenerator
 
          public static string ParseVMF(string mapDirectory)
         {
-
+            VMFParse vmf = new VMFParse();
         }
     }
 }
