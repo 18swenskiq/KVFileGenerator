@@ -50,12 +50,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="bin\Debug\AutoInstaller.exe.config" />
+    <None Include="bin\Debug\bin.rar" />
+    <None Include="obj\Debug\AutoInstaller.csproj.CopyComplete" />
+    <None Include="obj\Debug\AutoInstaller.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\AutoInstaller.csprojAssemblyReference.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\AutoInstaller.exe" />
+    <Content Include="bin\Debug\AutoInstaller.pdb" />
+    <Content Include="bin\Debug\Indieteur.SAMAPI.dll" />
+    <Content Include="bin\Debug\Indieteur.VDFAPI.dll" />
+    <Content Include="obj\Debug\AutoInstaller.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\AutoInstaller.exe" />
+    <Content Include="obj\Debug\AutoInstaller.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\temp\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
