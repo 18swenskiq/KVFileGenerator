@@ -103,6 +103,8 @@ namespace AutoInstaller
                 string contents = File.ReadAllText($"{CSGOPath}\\bin\\GameConfig.txt").Replace('\\','/');
                 VDFData vdfData = new VDFData(contents, false);
 
+                bool gameDataExists = false;
+
                 foreach (VDFNode vm in vdfData.Nodes)
                 {
                     if (vm.Name == "Configs")
@@ -125,9 +127,17 @@ namespace AutoInstaller
                                                     if (vk.Name.Contains("GameData"))
                                                     {
                                                         counter++;
+                                                        if (vk.Value == $"{CSGOPath}/bin/kvfilegen.fgd".Replace('\\', '/'))
+                                                        {
+                                                            gameDataExists = true;
+                                                        }
                                                     }
                                                 }
-                                                v2.Keys.Add(new VDFKey($"GameData{counter}", $"{CSGOPath}/bin/kvfilegen.fgd".Replace('\\','/'), v2));
+                                                if (!gameDataExists)
+                                                {
+                                                    v2.Keys.Add(new VDFKey($"GameData{counter}", $"{CSGOPath}/bin/kvfilegen.fgd".Replace('\\', '/'), v2));
+                                                }
+                                                
                                             }
                                         }
                                     }
