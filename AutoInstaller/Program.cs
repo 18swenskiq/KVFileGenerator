@@ -99,11 +99,10 @@ namespace AutoInstaller
                 Console.WriteLine("Finished installing files");
                 Console.WriteLine("Configuring FGD...");
 
-                // Parse VDF file and make it an object. The libraryfolders VDF file contains references to all user set game paths.
+                // This parses the GameConfig txt so that we can add our fgd to it
                 string contents = File.ReadAllText($"{CSGOPath}\\bin\\GameConfig.txt").Replace('\\','/');
                 VDFData vdfData = new VDFData(contents, false);
 
-                // This starts searching for game paths in this vdf
                 foreach (VDFNode vm in vdfData.Nodes)
                 {
                     if (vm.Name == "Configs")
