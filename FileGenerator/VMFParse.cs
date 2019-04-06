@@ -9,19 +9,20 @@ namespace FileGenerator
 {
     public class VMFParse
     {
+
         static void Main(string[] args)
         {
             ParseVMF(args[0]);
         }
 
-        private static string ParseVMF(string mapDirectory)
+        public static void ParseVMF(string mapDirectory)
         { 
             // Get CT and T Faction Integers
             string[] parsedMap = File.ReadAllLines(mapDirectory);
             int counter = 0;
             bool matched = false;
-            int ctFaction;
-            int tFaction;
+            int ctFaction = 0;
+            int tFaction = 0;
 
             foreach (string s in parsedMap)
             {
@@ -39,6 +40,19 @@ namespace FileGenerator
             ctFaction = int.Parse(Regex.Match(parsedMap[counter + 1], @"\d+").Value);
             tFaction = int.Parse(Regex.Match(parsedMap[counter + 2], @"\d+").Value);
 
+            // Get map name
+            counter = 0;
+            foreach (char c in mapDirectory)
+            {
+                if (c == '\\') counter++;
+            }
+            counter++;
+            string mapName = "";
+            while (counter < mapDirectory.Length)
+            {
+                mapName = mapName + mapDirectory[counter];
+                counter++;
+            }
         }
 
         private static void StopProgram(string myError)
