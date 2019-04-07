@@ -35,27 +35,27 @@ namespace FileGenerator
             tFaction = int.Parse(Regex.Match(parsedMap[counter + 2], @"\d+").Value);
 
             // Get map name
-            counter = 0;
-            int slashes = 0;
+            int counter2 = 0;
+            int lastSlash = 0;
             foreach (char c in mapDirectory)
             {
                 if (c == '\\')
                 {
-                    slashes = counter;
-                    counter++;
+                    lastSlash = counter2;
+                    counter2++;
                 }
                 else
                 {
-                    counter++;
+                    counter2++;
                 }
                 
             }
-            counter++;
+            counter2 = lastSlash + 1;
             string mapName = "";
-            while (counter < (mapDirectory.Length - 3))
+            while (counter2 <= (mapDirectory.Length - 5))
             {
-                mapName = mapName + mapDirectory[counter];
-                counter++;
+                mapName = mapName + mapDirectory[counter2];
+                counter2++;
             }
             return VMFInfo(ctFaction, tFaction, mapName);
 
