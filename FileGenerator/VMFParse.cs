@@ -9,13 +9,7 @@ namespace FileGenerator
 {
     public class VMFParse
     {
-
-        static void Main(string[] args)
-        {
-            ParseVMF(args[0]);
-        }
-
-        public static void ParseVMF(string mapDirectory)
+        public threevalue ParseVMF(string mapDirectory)
         { 
             // Get CT and T Faction Integers
             string[] parsedMap = File.ReadAllLines(mapDirectory);
@@ -41,18 +35,40 @@ namespace FileGenerator
             tFaction = int.Parse(Regex.Match(parsedMap[counter + 2], @"\d+").Value);
 
             // Get map name
-            counter = 0;
+            int counter2 = 0;
+            int lastSlash = 0;
             foreach (char c in mapDirectory)
             {
-                if (c == '\\') counter++;
+                if (c == '\\')
+                {
+                    lastSlash = counter2;
+                    counter2++;
+                }
+                else
+                {
+                    counter2++;
+                }
+                
             }
-            counter++;
+            counter2 = lastSlash + 1;
             string mapName = "";
-            while (counter < mapDirectory.Length)
+            while (counter2 <= (mapDirectory.Length - 5))
             {
-                mapName = mapName + mapDirectory[counter];
-                counter++;
+                mapName = mapName + mapDirectory[counter2];
+                counter2++;
             }
+            return VMFInfo(ctFaction, tFaction, mapName);
+
+        }
+
+        private static threevalue VMFInfo(int ctFaction, int tFaction, string mapName)
+        {
+            threevalue vals = new threevalue();
+            vals.valone = ctFaction;
+            vals.valtwo = tFaction;
+            vals.valthree = mapName;
+            return vals;
+
         }
 
         private static void StopProgram(string myError)
@@ -63,4 +79,11 @@ namespace FileGenerator
         }
 
     }
+}
+
+public class threevalue
+{
+    public int valone { get; set; }
+    public int valtwo { get; set; }
+    public string valthree { get; set; }
 }
