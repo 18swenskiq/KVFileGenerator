@@ -9,13 +9,7 @@ namespace FileGenerator
 {
     public class VMFParse
     {
-
-        static void Main(string[] args)
-        {
-            ParseVMF(args[0]);
-        }
-
-        public static void ParseVMF(string mapDirectory)
+        public threevalue ParseVMF(string mapDirectory)
         { 
             // Get CT and T Faction Integers
             string[] parsedMap = File.ReadAllLines(mapDirectory);
@@ -42,17 +36,39 @@ namespace FileGenerator
 
             // Get map name
             counter = 0;
+            int slashes = 0;
             foreach (char c in mapDirectory)
             {
-                if (c == '\\') counter++;
+                if (c == '\\')
+                {
+                    slashes = counter;
+                    counter++;
+                }
+                else
+                {
+                    counter++;
+                }
+                
             }
             counter++;
             string mapName = "";
-            while (counter < mapDirectory.Length)
+            while (counter < (mapDirectory.Length - 3))
             {
                 mapName = mapName + mapDirectory[counter];
                 counter++;
             }
+            return VMFInfo(ctFaction, tFaction, mapName);
+
+        }
+
+        private static threevalue VMFInfo(int ctFaction, int tFaction, string mapName)
+        {
+            threevalue vals = new threevalue();
+            vals.valone = ctFaction;
+            vals.valtwo = tFaction;
+            vals.valthree = mapName;
+            return vals;
+
         }
 
         private static void StopProgram(string myError)
@@ -63,4 +79,11 @@ namespace FileGenerator
         }
 
     }
+}
+
+public class threevalue
+{
+    public int valone { get; set; }
+    public int valtwo { get; set; }
+    public string valthree { get; set; }
 }
