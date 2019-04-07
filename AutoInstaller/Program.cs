@@ -94,8 +94,12 @@ namespace AutoInstaller
                 // Copy EXE file
                 Console.WriteLine("25%");
                 if (File.Exists("bin/FileGenerator.exe"))
-                { 
-                    Copy("bin/FileGenerator.exe", $"{CSGOPath}\\bin\\FileGenerator.exe");
+                {
+                    if (!Directory.Exists($"{CSGOPath}\\bin\\skv"))
+                    {
+                        Directory.CreateDirectory($"{CSGOPath}\\bin\\skv");
+                    }
+                    Copy("bin/FileGenerator.exe", $"{CSGOPath}\\bin\\skv\\FileGenerator.exe");
                 }
 
                 // Copy FGD file

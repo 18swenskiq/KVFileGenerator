@@ -13,7 +13,8 @@ move s_kvfile.vmt and s_kvfile.vtf to Counter Strike: Global Offensive/csgo/mate
 Open hammer, then go to Tools>Options then next to "Game Data files" click add, then browse to kvfilegen.fgd and open it.
 
 ==================================================================================================================================================================
-CREATING THE COMPILE CONFIG IN HAMMER
+MANUALLY CREATING THE COMPILE CONFIG IN HAMMER
 ==================================================================================================================================================================
 
-TODO: add instructions here when squidski finishes FileGenerator.exe
+Open hammer, then hit f9 or alternatively open the compile window. Click the expert option, then next to configurations clicked edit, then click new, name it whatever you want and then next to 
+compile/run commands click "new" and then in the command textbox add "$exedir/bin/skv/FileGenerator.exe", then in the parameters textbox add "$gamedir $path\$file".
