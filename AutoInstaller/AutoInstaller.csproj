@@ -60,6 +60,9 @@
     <None Include="app.config" />
     <None Include="bin\Debug\AutoInstaller.exe.config" />
     <None Include="bin\Debug\bin.rar" />
+    <None Include="bin\Debug\bin\kvfilegen.fgd" />
+    <None Include="bin\Debug\bin\s_kvfile.vmt" />
+    <None Include="bin\Debug\bin\s_kvfile.vtf" />
     <None Include="obj\Debug\AutoInstaller.csproj.CopyComplete" />
     <None Include="obj\Debug\AutoInstaller.csproj.CoreCompileInputs.cache" />
     <None Include="obj\Debug\AutoInstaller.csprojAssemblyReference.cache" />
@@ -69,6 +72,7 @@
   <ItemGroup>
     <Content Include="bin\Debug\AutoInstaller.exe" />
     <Content Include="bin\Debug\AutoInstaller.pdb" />
+    <Content Include="bin\Debug\bin\FileGenerator.exe" />
     <Content Include="bin\Debug\Indieteur.SAMAPI.dll" />
     <Content Include="bin\Debug\Indieteur.VDFAPI.dll" />
     <Content Include="bin\Debug\README_IMPORTANT.txt" />

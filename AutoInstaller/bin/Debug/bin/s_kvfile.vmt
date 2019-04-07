@@ -1,0 +1,5 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "s_kvfile/editor/s_kvfile"
+	"$translucent" 1
+}
