@@ -182,10 +182,28 @@ namespace AutoInstaller
                 }
 
                 vdfData.SaveToFile($"{CSGOPath}\\bin\\GameConfig.txt", true);
-                Console.WriteLine("Finished!");
 
+                Console.WriteLine("Configuring launch options...");
+
+                if (File.Exists($"{CSGOPath}\\bin\\CmdSeq.wc"))
+                {
+                    if (!WCRead.entryExists($"{CSGOPath}\\bin\\CmdSeq.wc"))
+                    {
+                        // Write it into the wc file
+                        WCRead.writeEntry($"{CSGOPath}\\bin\\CmdSeq.wc");
+                    }
+                    else
+                    {
+                        Console.WriteLine("The correct launch option already exists! Skipping unnecessary step.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Launch option config file not found! You will need to manually add the launch option to hammer(see how in the readme).");
+                }
             }
-            
+
+            Console.WriteLine("Installer finished.");
             Console.ReadKey();
         }
         public static void Copy(string inputFilePath, string outputFilePath)
