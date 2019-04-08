@@ -202,6 +202,12 @@ namespace AutoInstaller
                 }
             }
             binReader.Close();
+
+            // OK OK I CAN EXPLAIN the strings need to all be exactly 260 characters long(except one needs to be 128 long for some reason), and if i use spaces it shows as spaces in editor, so i need to use
+            // \0(null character) to show hammer that nothing should be shown here. This is the jankiest code i've ever written, but this format dates back to when hammer was first released and was 
+            // called World Craft, so this format in general is jank as heck. All white space is filled in with useless junk in the file, and i have no idea how hammer differentiates between junk and non junk
+            // but whatever ok enjoy this dumpster fire
+
             // first seq name
             binWriter.Write("SKV_Auto\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0".ToCharArray());
             //Console.WriteLine("SEQ NAME:" + Encoding.Default.GetString(d4));
