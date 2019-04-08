@@ -55,8 +55,6 @@ namespace FileGenerator
 
                 //Close Program
                 Console.WriteLine("KV File Sucessfully Created");
-                Console.WriteLine("Press any key to exit");
-                Console.ReadKey();
                 Environment.Exit(0);
             }
         }
