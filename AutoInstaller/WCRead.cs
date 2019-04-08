@@ -73,7 +73,7 @@ namespace AutoInstaller
                     //Console.WriteLine("ARG:" + string.Join("", d9));
 
                     // Check if needed config already exists
-                    if (string.Join("",d8).Contains("$exedir/bin/skv/FileGenerator.exe") && string.Join("",d9).Contains("$gamedir $path\\$file"))
+                    if (string.Join("", d8).Contains("$exedir/bin/skv/FileGenerator.exe") && string.Join("", d9).Contains("$gamedir $path\\$file"))
                     {
                         ret = true;
                     }
@@ -88,7 +88,7 @@ namespace AutoInstaller
 
                     // ensure file
                     var d12 = binReader.ReadChars(260);
-                   // Console.WriteLine("ENSURE FILE:" + string.Join("", d12));
+                    // Console.WriteLine("ENSURE FILE:" + string.Join("", d12));
 
                     // use proc window
                     var d13 = binReader.ReadInt32();
@@ -116,7 +116,7 @@ namespace AutoInstaller
 
             BinaryReader binReader = new BinaryReader(File.Open(path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite));
             BinaryWriter binWriter = new BinaryWriter(File.Open(newPath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite));
-            binWriter.BaseStream.SetLength(binReader.BaseStream.Length*2);
+            binWriter.BaseStream.SetLength(binReader.BaseStream.Length * 2);
             ///header
             var d1 = binReader.ReadChars(31);
             //Console.WriteLine("HEADER" + string.Join("", d1));
@@ -128,7 +128,7 @@ namespace AutoInstaller
 
             //seq count
             var d3 = binReader.ReadUInt32();
-            binWriter.Write(d3+1);
+            binWriter.Write(d3 + 1);
             //Console.WriteLine("SEQUENCE COUNT:" + d3);
 
             long seqPos = 0;
@@ -202,8 +202,14 @@ namespace AutoInstaller
                 }
             }
             binReader.Close();
+
+            // OK OK I CAN EXPLAIN the strings need to all be exactly 260 characters long(except one needs to be 128 long for some reason), and if i use spaces it shows as spaces in editor, so i need to use
+            // \0(null character) to show hammer that nothing should be shown here. This is the jankiest code i've ever written, but this format dates back to when hammer was first released and was 
+            // called World Craft, so this format in general is jank as heck. All white space is filled in with useless junk in the file, and i have no idea how hammer differentiates between junk and non junk
+            // but whatever ok enjoy this dumpster fire
+
             // first seq name
-            binWriter.Write("SKV_Auto                                                                                                                        ".ToCharArray());
+            binWriter.Write("SKV_Auto\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0".ToCharArray());
             //Console.WriteLine("SEQ NAME:" + Encoding.Default.GetString(d4));
 
             // cmd count
@@ -215,10 +221,10 @@ namespace AutoInstaller
             binWriter.Write(0);
 
             // Exe
-            binWriter.Write("$exedir/bin/skv/FileGenerator.exe                                                                                                                                                                                                                                   ".ToCharArray());
+            binWriter.Write("$exedir/bin/skv/FileGenerator.exe\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0".ToCharArray());
 
             //args
-            binWriter.Write("$gamedir $path\\$file                                                                                                                                                                                                                                               ".ToCharArray());
+            binWriter.Write("$gamedir $path\\$file\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0".ToCharArray());
             // long file
             binWriter.Write(1);
 
@@ -226,7 +232,7 @@ namespace AutoInstaller
             binWriter.Write(0);
 
             // ensure file
-            binWriter.Write("                                                                                                                                                                                                                                                                    ".ToCharArray());
+            binWriter.Write("\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0".ToCharArray());
 
             // use proc window
             binWriter.Write(1);
@@ -237,7 +243,7 @@ namespace AutoInstaller
             binWriter.Close();
 
             File.Delete(path);
-            File.Copy(newPath,path);
+            File.Copy(newPath, path);
         }
     }
 }
